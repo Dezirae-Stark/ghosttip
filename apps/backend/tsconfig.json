@@ -26,6 +26,11 @@
       "@ghosttip/config": ["../../packages/config/src"]
     }
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "../../packages/shared/src/**/*",
+    "../../packages/crypto/src/**/*",
+    "../../packages/config/src/**/*"
+  ],
   "exclude": ["node_modules", "dist", "test"]
 }
