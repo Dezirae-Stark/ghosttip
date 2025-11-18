@@ -1,5 +1,3 @@
-'use client';
-
 /**
  * Public Tip Page
  * Displays creator's tip profile with payment methods
