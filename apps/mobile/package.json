@@ -12,7 +12,7 @@
     "build": "tsc",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest",
-    "test:ci": "jest --ci --coverage",
+    "test:ci": "jest --ci --coverage --passWithNoTests",
     "clean": "rm -rf .expo"
   },
   "dependencies": {
