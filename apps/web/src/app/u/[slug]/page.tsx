@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Public Tip Page
  * Displays creator's tip profile with payment methods
@@ -165,7 +167,6 @@ function PaymentMethodCard({ method }: { method: any }) {
 }
 
 // QR Code Modal for crypto addresses
-'use client';
 function QRCodeModal({ address, type }: { address: string; type: string }) {
   const [showQR, setShowQR] = React.useState(false);
 
