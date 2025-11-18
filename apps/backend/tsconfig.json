@@ -10,7 +10,6 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
@@ -21,9 +20,9 @@
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
     "paths": {
-      "@ghosttip/shared": ["../../packages/shared/dist"],
-      "@ghosttip/crypto": ["../../packages/crypto/dist"],
-      "@ghosttip/config": ["../../packages/config/dist"]
+      "@ghosttip/shared": ["../../packages/shared/src"],
+      "@ghosttip/crypto": ["../../packages/crypto/src"],
+      "@ghosttip/config": ["../../packages/config/src"]
     }
   },
   "include": ["src/**/*"],
