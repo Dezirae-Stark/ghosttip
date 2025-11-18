@@ -11,6 +11,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "rootDirs": ["./src", "../../packages/shared/src", "../../packages/crypto/src", "../../packages/config/src"],
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
