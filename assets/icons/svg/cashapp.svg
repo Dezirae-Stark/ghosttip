@@ -1,0 +1,24 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Square with neon edge -->
+  <rect x="4" y="4" width="40" height="40" rx="8" stroke="#00D632" stroke-width="2" fill="none" filter="url(#glow)"/>
+
+  <!-- Dollar sign -->
+  <g transform="translate(24, 24)">
+    <path d="M-2 -12 L-2 12 M2 -12 L2 12 M-6 -8 C-6 -10, -4 -11, 0 -11 C4 -11, 6 -10, 6 -8 C6 -6, 4 -5, 0 -5 M0 -5 C-4 -5, -6 -4, -6 -2 C-6 0, -4 1, 0 1 C4 1, 6 0, 6 -2"
+          stroke="#00D632"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          fill="none"
+          filter="url(#glow)"/>
+  </g>
+</svg>

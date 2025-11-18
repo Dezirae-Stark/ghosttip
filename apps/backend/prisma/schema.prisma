@@ -1,0 +1,172 @@
+// GhostTip - Anonymous Tip Platform
+// Prisma Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum PaymentMethodType {
+  CASH_APP
+  VENMO
+  PAYPAL
+  BTC
+  ETH
+  XMR
+  LIGHTNING
+  OTHER
+}
+
+enum TipTokenStatus {
+  ACTIVE
+  REVOKED
+  EXPIRED
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+// ============================================================================
+// MODELS
+// ============================================================================
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  passwordHash  String?  // Nullable for passwordless auth
+  displayAlias  String   @unique
+  role          UserRole @default(USER)
+
+  // Timestamps
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  lastLoginAt   DateTime?
+
+  // Relations
+  tipProfiles      TipProfile[]
+  paymentMethods   PaymentMethod[]
+  refreshTokens    RefreshToken[]
+
+  @@index([email])
+  @@index([displayAlias])
+}
+
+model RefreshToken {
+  id            String   @id @default(cuid())
+  userId        String
+  tokenHash     String   @unique // Store hashed refresh token
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+  revokedAt     DateTime?
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([tokenHash])
+}
+
+model PaymentMethod {
+  id                    String            @id @default(cuid())
+  userId                String
+  type                  PaymentMethodType
+  label                 String            // e.g., "Primary CashApp", "BTC Cold Wallet"
+  publicHandle          String            // What tippers see (e.g., $cashtag, venmo handle, BTC address)
+  encryptedCredentials  String?           // For OAuth tokens, API keys (encrypted at rest)
+  isActive              Boolean           @default(true)
+  sortOrder             Int               @default(0)
+
+  // Timestamps
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+
+  // Relations
+  user                  User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tipEvents             TipEvent[]
+
+  @@index([userId])
+  @@index([userId, isActive])
+}
+
+model TipProfile {
+  id              String   @id @default(cuid())
+  userId          String
+  slug            String   @unique // URL-friendly identifier (e.g., "neonfox")
+  displayName     String   // Display name on tip page
+  bio             String?  @db.Text
+  avatarUrl       String?
+  themeSettings   Json?    // JSON: { accentColor, variant, etc. }
+
+  // Privacy
+  isPublic        Boolean  @default(true)
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tipTokens       TipToken[]
+  tipEvents       TipEvent[]
+
+  @@index([slug])
+  @@index([userId])
+}
+
+model TipToken {
+  id              String         @id @default(cuid())
+  tipProfileId    String
+  token           String         @unique // Public-facing token (e.g., "GHOST-ABCD1234")
+  tokenHash       String         @unique // SHA-256 hash for lookup (optional, for extra security)
+  status          TipTokenStatus @default(ACTIVE)
+  label           String?        // Optional label (e.g., "Twitter campaign", "Reddit exclusive")
+
+  // Optional expiry
+  expiresAt       DateTime?
+
+  // Timestamps
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  // Relations
+  tipProfile      TipProfile     @relation(fields: [tipProfileId], references: [id], onDelete: Cascade)
+  tipEvents       TipEvent[]
+
+  @@index([token])
+  @@index([tokenHash])
+  @@index([tipProfileId])
+}
+
+model TipEvent {
+  id                String            @id @default(cuid())
+  tipProfileId      String
+  tipTokenId        String?           // Nullable if they used direct profile link
+  paymentMethodId   String?           // Which payment method they selected
+  paymentMethodType PaymentMethodType? // Denormalized for analytics
+
+  // Analytics (non-sensitive)
+  referrer          String?           // e.g., "x.com", "instagram.com"
+  userAgent         String?
+  ipAddressHash     String?           // Hashed IP for abuse prevention (not stored plaintext)
+
+  // Timestamps
+  createdAt         DateTime          @default(now())
+
+  // Relations
+  tipProfile        TipProfile        @relation(fields: [tipProfileId], references: [id], onDelete: Cascade)
+  tipToken          TipToken?         @relation(fields: [tipTokenId], references: [id], onDelete: SetNull)
+  paymentMethod     PaymentMethod?    @relation(fields: [paymentMethodId], references: [id], onDelete: SetNull)
+
+  @@index([tipProfileId])
+  @@index([tipTokenId])
+  @@index([createdAt])
+}

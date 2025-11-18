@@ -1,0 +1,30 @@
+{
+  "name": "ghosttip",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Anonymous tip platform - privacy-focused payment link aggregator",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:ci": "turbo run test:ci",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "db:generate": "pnpm --filter @ghosttip/backend prisma generate",
+    "db:push": "pnpm --filter @ghosttip/backend prisma db push",
+    "db:migrate": "pnpm --filter @ghosttip/backend prisma migrate dev",
+    "db:studio": "pnpm --filter @ghosttip/backend prisma studio"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "prettier": "^3.1.0",
+    "eslint": "^8.56.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}

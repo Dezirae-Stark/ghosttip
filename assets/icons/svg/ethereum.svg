@@ -1,0 +1,40 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ethereum-glow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Ethereum diamond logo -->
+  <!-- Top half -->
+  <path d="M12 3 L12 11 L5 12.5 Z"
+        stroke="#00FFFF"
+        stroke-width="2"
+        stroke-linejoin="round"
+        fill="none"
+        filter="url(#ethereum-glow)"/>
+  <path d="M12 3 L12 11 L19 12.5 Z"
+        stroke="#00FFFF"
+        stroke-width="2"
+        stroke-linejoin="round"
+        fill="none"
+        filter="url(#ethereum-glow)"/>
+
+  <!-- Bottom half -->
+  <path d="M12 21 L12 14 L5 12.5 Z"
+        stroke="#00FFFF"
+        stroke-width="2"
+        stroke-linejoin="round"
+        fill="none"
+        filter="url(#ethereum-glow)"/>
+  <path d="M12 21 L12 14 L19 12.5 Z"
+        stroke="#00FFFF"
+        stroke-width="2"
+        stroke-linejoin="round"
+        fill="none"
+        filter="url(#ethereum-glow)"/>
+</svg>

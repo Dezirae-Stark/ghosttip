@@ -1,0 +1,35 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="eye-off-glow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Eye outline (partial) -->
+  <path d="M9.9 4.24 C10.5 4.07 11.2 4 12 4 C19 4 22 12 22 12 C22 12 21 14.5 18.5 16.5 M6.6 6.6 C4.5 8.5 2 12 2 12 C2 12 5 19 12 19 C13.3 19 14.5 18.7 15.5 18.3"
+        stroke="#00FFFF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        filter="url(#eye-off-glow)"/>
+
+  <!-- Pupil (partial) -->
+  <path d="M14.1 14.1 C13.5 14.7 12.8 15 12 15 C10.3 15 9 13.7 9 12 C9 11.2 9.3 10.5 9.9 9.9"
+        stroke="#00FFFF"
+        stroke-width="2"
+        stroke-linecap="round"
+        fill="none"
+        filter="url(#eye-off-glow)"/>
+
+  <!-- Slash -->
+  <line x1="3" y1="3" x2="21" y2="21"
+        stroke="#00FFFF"
+        stroke-width="2"
+        stroke-linecap="round"
+        filter="url(#eye-off-glow)"/>
+</svg>

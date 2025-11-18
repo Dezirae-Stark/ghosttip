@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@cryptowizard - GhostTip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-cyan: #00FFFF;
+      --neon-magenta: #FF00FF;
+      --neon-purple: #B026FF;
+      --neon-green: #39FF14;
+      --noir-black: #0A0E14;
+      --noir-dark: #0F1419;
+      --noir-medium: #1A1F2E;
+      --text-primary: #E6E6E6;
+      --text-secondary: #B3B3B3;
+      --text-muted: #666666;
+      --font-headline: 'Rajdhani', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--noir-black);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.1;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Profile Header */
+    .profile-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-magenta));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-family: var(--font-headline);
+      font-weight: 700;
+      margin: 0 auto 1rem;
+      border: 2px solid rgba(0, 255, 255, 0.5);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    }
+
+    .display-name {
+      font-family: var(--font-headline);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .bio {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+
+    /* Payment Methods */
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .payment-method {
+      background: rgba(15, 20, 25, 0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .payment-method:hover {
+      border-color: rgba(0, 255, 255, 0.8);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .payment-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .payment-info {
+      flex: 1;
+    }
+
+    .payment-label {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .payment-address {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .payment-arrow {
+      color: var(--neon-cyan);
+      font-size: 1.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .powered-by {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .powered-by a {
+      color: var(--neon-cyan);
+      text-decoration: none;
+    }
+
+    .powered-by a:hover {
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="avatar">CW</div>
+      <h1 class="display-name">CryptoWizard</h1>
+      <p class="bio">
+        Blockchain enthusiast | NFT creator | Tip me if you enjoyed my content!
+      </p>
+    </div>
+
+    <!-- Payment Methods -->
+    <div class="payment-methods">
+      <div class="payment-method">
+        <div class="payment-icon">₿</div>
+        <div class="payment-info">
+          <div class="payment-label">Bitcoin</div>
+          <div class="payment-address">bc1qxy2kgdygjrsqtzq2n0yrf...</div>
+        </div>
+        <div class="payment-arrow">→</div>
+      </div>
+
+      <div class="payment-method">
+        <div class="payment-icon">Ξ</div>
+        <div class="payment-info">
+          <div class="payment-label">Ethereum</div>
+          <div class="payment-address">0x742d35Cc6634C0532925a...</div>
+        </div>
+        <div class="payment-arrow">→</div>
+      </div>
+
+      <div class="payment-method">
+        <div class="payment-icon">$</div>
+        <div class="payment-info">
+          <div class="payment-label">Cash App</div>
+          <div class="payment-address">$cryptowizard</div>
+        </div>
+        <div class="payment-arrow">→</div>
+      </div>
+
+      <div class="payment-method">
+        <div class="payment-icon">V</div>
+        <div class="payment-info">
+          <div class="payment-label">Venmo</div>
+          <div class="payment-address">@cryptowizard</div>
+        </div>
+        <div class="payment-arrow">→</div>
+      </div>
+
+      <div class="payment-method">
+        <div class="payment-icon">⚡</div>
+        <div class="payment-info">
+          <div class="payment-label">Lightning Network</div>
+          <div class="payment-address">lnbc10u1p3...</div>
+        </div>
+        <div class="payment-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="powered-by">
+        Powered by <a href="/">👻 GhostTip</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

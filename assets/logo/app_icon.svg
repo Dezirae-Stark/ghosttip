@@ -1,0 +1,43 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="neonGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="appGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B026FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF00FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background with rounded corners -->
+  <rect width="512" height="512" rx="110" fill="#0A0E14"/>
+
+  <!-- Ghost body - simplified for small sizes -->
+  <path d="M256 120 C200 120, 160 160, 160 220 C160 250, 160 320, 160 340 C160 350, 168 355, 176 348 C184 341, 190 334, 204 342 C218 350, 222 350, 238 342 C254 334, 258 334, 256 342 C254 350, 258 350, 274 342 C290 334, 294 334, 308 342 C322 350, 328 341, 336 348 C344 355, 352 350, 352 340 C352 320, 352 250, 352 220 C352 160, 312 120, 256 120 Z"
+        fill="url(#appGradient)"
+        filter="url(#neonGlow)"/>
+
+  <!-- Eyes - larger for visibility -->
+  <ellipse cx="216" cy="210" rx="16" ry="24" fill="#0A0E14"/>
+  <ellipse cx="296" cy="210" rx="16" ry="24" fill="#0A0E14"/>
+  <ellipse cx="216" cy="210" rx="12" ry="20" fill="#00FFFF" opacity="0.9"/>
+  <ellipse cx="296" cy="210" rx="12" ry="20" fill="#00FFFF" opacity="0.9"/>
+
+  <!-- Dollar sign - bold and clear -->
+  <g transform="translate(256, 290)">
+    <path d="M-8 -50 L-8 50 M8 -50 L8 50 M-25 -30 C-25 -40, -15 -45, 0 -45 C15 -45, 25 -40, 25 -30 C25 -20, 15 -15, 0 -15 M0 -15 C-15 -15, -25 -10, -25 0 C-25 10, -15 15, 0 15 C15 15, 25 10, 25 0"
+          stroke="#00FFFF"
+          stroke-width="8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+          filter="url(#neonGlow)"/>
+  </g>
+</svg>

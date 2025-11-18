@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GhostTip - Anonymous Tipping Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Import color palette */
+    :root {
+      --neon-cyan: #00FFFF;
+      --neon-magenta: #FF00FF;
+      --neon-purple: #B026FF;
+      --neon-green: #39FF14;
+      --noir-black: #0A0E14;
+      --noir-dark: #0F1419;
+      --noir-medium: #1A1F2E;
+      --text-primary: #E6E6E6;
+      --text-secondary: #B3B3B3;
+      --font-headline: 'Rajdhani', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--noir-black);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* Scanlines effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.1;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 14, 20, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    }
+
+    /* Hero section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: var(--font-headline);
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.5));
+      }
+      to {
+        filter: drop-shadow(0 0 40px rgba(255, 0, 255, 0.8));
+      }
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      font-family: var(--font-headline);
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-magenta));
+      color: var(--noir-black);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
+    }
+
+    /* Features section */
+    .features {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .features h2 {
+      font-family: var(--font-headline);
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--neon-cyan);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: rgba(15, 20, 25, 0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(0, 255, 255, 0.8);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      color: var(--neon-magenta);
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(0, 255, 255, 0.3);
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">👻 GHOSTTIP</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/login">Login</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div>
+      <h1>👻 GHOSTTIP</h1>
+      <p>Anonymous Tipping Platform</p>
+      <p style="max-width: 600px; margin: 0 auto 2rem;">
+        Aggregate all your payment methods into one secure, anonymous link.
+        Protect your privacy while accepting tips from anywhere.
+      </p>
+      <a href="/register" class="cta-button">Get Started Free</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <h2>Why GhostTip?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>🔒 Privacy First</h3>
+        <p>
+          Keep your identity hidden. No personal information required.
+          Accept tips without revealing your real identity or location.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>💳 All Payment Methods</h3>
+        <p>
+          Aggregate Cash App, Venmo, PayPal, Bitcoin, Ethereum, and more.
+          One link, unlimited payment options.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>⚡ Instant Setup</h3>
+        <p>
+          Create your tip page in under 60 seconds.
+          No verification, no waiting. Share your link immediately.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🎨 Customizable</h3>
+        <p>
+          Personalize your tip page with custom colors, bio, and display name.
+          Make it uniquely yours.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🌐 Share Anywhere</h3>
+        <p>
+          One simple link works everywhere: social media, streams, websites.
+          ghosttip.com/u/yourname
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🛡️ Secure</h3>
+        <p>
+          End-to-end encryption for sensitive data. We never see your payment details.
+          Your security is our priority.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 GhostTip. Privacy-focused anonymous tipping.</p>
+  </footer>
+</body>
+</html>

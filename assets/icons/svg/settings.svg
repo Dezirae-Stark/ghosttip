@@ -1,0 +1,25 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="settings-glow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Settings gear -->
+  <circle cx="12" cy="12" r="3"
+          stroke="#00FFFF"
+          stroke-width="2"
+          fill="none"
+          filter="url(#settings-glow)"/>
+
+  <path d="M12 2 L12 5 M12 19 L12 22 M22 12 L19 12 M5 12 L2 12 M19.1 4.9 L17 7 M7 17 L4.9 19.1 M19.1 19.1 L17 17 M7 7 L4.9 4.9"
+        stroke="#00FFFF"
+        stroke-width="2"
+        stroke-linecap="round"
+        fill="none"
+        filter="url(#settings-glow)"/>
+</svg>

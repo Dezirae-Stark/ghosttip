@@ -1,0 +1,72 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer glow -->
+  <defs>
+    <filter id="neonGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="cyanMagenta" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B026FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF00FF;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="hologram" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:0.8" />
+      <stop offset="33%" style="stop-color:#B026FF;stop-opacity:0.6" />
+      <stop offset="66%" style="stop-color:#FF00FF;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#00FFFF;stop-opacity:0.6" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle with scanlines -->
+  <circle cx="100" cy="100" r="95" fill="#0A0E14" stroke="url(#hologram)" stroke-width="2" opacity="0.3"/>
+
+  <!-- Ghost body -->
+  <path d="M100 40 C70 40, 50 60, 50 90 C50 105, 50 130, 50 140 C50 145, 54 148, 58 145 C62 142, 64 138, 70 142 C76 146, 78 146, 85 142 C92 138, 94 138, 100 142 C106 146, 108 146, 115 142 C122 138, 124 138, 130 142 C136 146, 138 142, 142 145 C146 148, 150 145, 150 140 C150 130, 150 105, 150 90 C150 60, 130 40, 100 40 Z"
+        fill="url(#cyanMagenta)"
+        filter="url(#neonGlow)"
+        opacity="0.9"/>
+
+  <!-- Eyes -->
+  <ellipse cx="80" cy="85" rx="8" ry="12" fill="#0A0E14"/>
+  <ellipse cx="120" cy="85" rx="8" ry="12" fill="#0A0E14"/>
+
+  <!-- Eye glow -->
+  <ellipse cx="80" cy="85" rx="6" ry="10" fill="#00FFFF" opacity="0.6"/>
+  <ellipse cx="120" cy="85" rx="6" ry="10" fill="#00FFFF" opacity="0.6"/>
+
+  <!-- Dollar sign (tip symbol) integrated into ghost -->
+  <g transform="translate(100, 115)">
+    <!-- Dollar $ -->
+    <path d="M-3 -20 L-3 20 M3 -20 L3 20 M-10 -12 C-10 -16, -6 -18, 0 -18 C6 -18, 10 -16, 10 -12 C10 -8, 6 -6, 0 -6 M0 -6 C-6 -6, -10 -4, -10 0 C-10 4, -6 6, 0 6 C6 6, 10 4, 10 0"
+          stroke="#00FFFF"
+          stroke-width="3"
+          fill="none"
+          filter="url(#neonGlow)"/>
+  </g>
+
+  <!-- Geometric accents (cyberpunk triangles) -->
+  <path d="M30 30 L40 20 L20 20 Z" fill="#00FFFF" opacity="0.3"/>
+  <path d="M170 30 L180 20 L160 20 Z" fill="#FF00FF" opacity="0.3"/>
+  <path d="M30 170 L40 180 L20 180 Z" fill="#B026FF" opacity="0.3"/>
+  <path d="M170 170 L180 180 L160 180 Z" fill="#00FFFF" opacity="0.3"/>
+
+  <!-- Scanlines overlay -->
+  <g opacity="0.1">
+    <line x1="0" y1="20" x2="200" y2="20" stroke="#00FFFF" stroke-width="1"/>
+    <line x1="0" y1="40" x2="200" y2="40" stroke="#00FFFF" stroke-width="1"/>
+    <line x1="0" y1="60" x2="200" y2="60" stroke="#00FFFF" stroke-width="1"/>
+    <line x1="0" y1="80" x2="200" y2="80" stroke="#00FFFF" stroke-width="1"/>
+    <line x1="0" y1="100" x2="200" y2="100" stroke="#00FFFF" stroke-width="1"/>
+    <line x1="0" y1="120" x2="200" y2="120" stroke="#00FFFF" stroke-width="1"/>
+    <line x1="0" y1="140" x2="200" y2="140" stroke="#00FFFF" stroke-width="1"/>
+    <line x1="0" y1="160" x2="200" y2="160" stroke="#00FFFF" stroke-width="1"/>
+    <line x1="0" y1="180" x2="200" y2="180" stroke="#00FFFF" stroke-width="1"/>
+  </g>
+</svg>
