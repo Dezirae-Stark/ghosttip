@@ -28,7 +28,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   const loadData = async () => {
     try {
@@ -108,7 +108,7 @@ export default function DashboardPage() {
             <Card>
               <CardContent className="py-12 text-center">
                 <p className="text-gray-400 mb-4">
-                  You haven't created any tip profiles yet
+                  You haven&apos;t created any tip profiles yet
                 </p>
                 <Button onClick={() => setShowCreateProfile(true)}>
                   Create Your First Profile
