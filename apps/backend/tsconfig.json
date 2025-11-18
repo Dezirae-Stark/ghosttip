@@ -10,7 +10,6 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
@@ -18,12 +17,7 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "esModuleInterop": true,
-    "paths": {
-      "@ghosttip/shared": ["../../packages/shared/src"],
-      "@ghosttip/crypto": ["../../packages/crypto/src"],
-      "@ghosttip/config": ["../../packages/config/src"]
-    }
+    "esModuleInterop": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "test", "**/*.test.ts", "**/*.spec.ts"]
