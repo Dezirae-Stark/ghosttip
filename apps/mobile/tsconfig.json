@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-native",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "target": "esnext",
+    "lib": ["esnext"],
+    "allowJs": true,
+    "noEmit": false,
+    "outDir": "./dist"
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    ".expo",
+    "dist"
+  ]
+}
