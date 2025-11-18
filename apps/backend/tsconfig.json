@@ -32,5 +32,5 @@
     "../../packages/crypto/src/**/*",
     "../../packages/config/src/**/*"
   ],
-  "exclude": ["node_modules", "dist", "test"]
+  "exclude": ["node_modules", "dist", "test", "**/*.test.ts", "**/*.spec.ts"]
 }
